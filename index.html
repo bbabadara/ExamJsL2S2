@@ -17,25 +17,27 @@
   </head>
 
   <body>
-
+    <div class="mt-5 flex justify-center items-center space-x-2">
+        <input type="text" name="tel" id="inputTel" placeholder="Rechercher client par Téléphone" class="p-2 border w-1/2 max-w-md rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <button type="submit" id="btnTel" class="bg-blue-500 text-white px-5 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Rechercher</button>
+    </div>
     
-      <div class="grid grid-cols-2 p-5 gap-4 mt-10 shadow-xl mb-5">
-        <div class="flex items-center justify-around rounded shadow-xl p-3 ">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzDR9UU9sQWlWTDm1JbBvjy2lCQbNM9z29Dw&usqp=CAU" class="rounded-full" alt="client">
-            <div class=" leading-loose">
-                <h3 class="text-2xl ">Prenom : Badara</h3>
-                <h3 class="text-2xl mt-2 ">Nom : Ba</h3>
-                <h3 class="text-2xl mt-2">Tel : 772641040</h3>
-                <h3 class="text-2xl mt-2">Email : bbabadara@gmail.com</h3>
+     
+    <div class="grid  grid-cols-1 md:grid-cols-2 p-5 gap-4 mt-3 shadow-xl mb-5" id="infoClient">
+        <div class="flex items-center justify-around rounded bg-white shadow-xl p-3">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzDR9UU9sQWlWTDm1JbBvjy2lCQbNM9z29Dw&usqp=CAU" class="rounded-full w-24 h-24" alt="Photo de Badara Ba">
+            <div class="leading-loose space-y-2">
+                <h3 class="text-2xl font-semibold">Prenom : Badara</h3>
+                <h3 class="text-2xl font-semibold">Nom : Ba</h3>
+                <h3 class="text-2xl font-semibold">Tel : 772641040</h3>
+            </div>
         </div>
-    
+        <div class="rounded bg-white shadow-xl p-3">
+            <h3 class="text-3xl font-bold">Montant Total : 60000 Fcfa</h3>
+            <h3 class="text-3xl font-bold mt-5 mb-5">Montant Versé : 40000 Fcfa</h3>
+            <h3 class="text-3xl font-bold">Montant Restant : 20000 Fcfa</h3>
         </div>
-        <div class=" rounded shadow-xl p-3">
-            <h3 class="text-3xl  ">Montant Total : 60000 Fcfa</h3>
-            <h3 class="text-3xl mt-5 mb-5">Montant Versé : 40000 Fcfa</h3>
-            <h3 class="text-3xl ">Montant Restant : 20000 Fcfa</h3>
-        </div>
-      </div>
+    </div>
 
       <div class="grid grid-cols-2 gap-4 mt-5 p-5 shadow mb-4">
         <!-- premier tableau -->

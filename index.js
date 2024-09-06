@@ -5,6 +5,9 @@ let clients = [];
  const tBody1=document.querySelector("#tBody1")
  const tBody2=document.querySelector("#tBody2")
  const searchArticle=document.querySelector("#searchArticle")
+ const inputTel = document.getElementById('inputTel');
+ const btnTel = document.getElementById('btnTel');
+ const infoClient = document.getElementById('infoClient');
 // Recuperation de donnees  
 fetchDatas("clients").then(data => {
   clients = data;
@@ -22,6 +25,8 @@ document.addEventListener("DOMContentLoaded", async (event) => {
 // console.log(clients);
 
 tBody1.innerHTML=generateTr1(articles);
+
+
 searchArticle.addEventListener("input",function(){
     if (searchArticle.value.trim()!="") {
         let recherche=this.value.toLowerCase();
@@ -32,6 +37,28 @@ searchArticle.addEventListener("input",function(){
     }
     
 })
+
+btnTel.addEventListener('click', function() {
+    const telephone = inputTel.value;
+    if (telephone.trim()!="") {
+        const client =findClientBytelephone(telephone)
+        if (client) {
+            infoClient.innerHTML=generateInfoClient(client)
+        }else{
+            infoClient.innerHTML="Aucun client trouvé avec ce numéro de téléphone!";
+        }
+    } else {
+        alert("Veuillez saisir un numéro de téléphone!");
+    }
+
+});
+
+
+
+
+
+
+
 
 
 })
@@ -102,4 +129,29 @@ function generateTr2(d){
 
   function findArticlesByInputSearch(input){
     return articles.filter(a=>a.libelle.toLowerCase().includes(input.toLowerCase()))
+  }
+
+  function findClientBytelephone(telephone) {
+    return clients.find(c=>c.telephone==telephone)
+  }
+
+  function generateInfoClient(client){
+    const montantTotal = client.dette.reduce((acc, item) => acc + item.montant, 0);
+    const montantVerse = client.dette.reduce((acc, item) => acc + item.verse, 0);
+    const montantRestant = montantTotal - montantVerse;
+return   `
+    <div class="flex items-center justify-around rounded bg-white shadow-xl p-3">
+        <img src="${client.photo}" class="rounded-full w-24 h-24" alt="Photo de ${client.prenom} ${client.nom}">
+        <div class="leading-loose space-y-2">
+            <h3 class="text-2xl font-semibold">Prénom : ${client.prenom}</h3>
+            <h3 class="text-2xl font-semibold">Nom : ${client.nom}</h3>
+            <h3 class="text-2xl font-semibold">Tel : ${client.telephone}</h3>
+        </div>
+    </div>
+    <div class="rounded bg-white shadow-xl p-3">
+        <h3 class="text-3xl font-bold">Montant Total : ${montantTotal} Fcfa</h3>
+        <h3 class="text-3xl font-bold mt-5 mb-5">Montant Versé : ${montantVerse} Fcfa</h3>
+        <h3 class="text-3xl font-bold">Montant Restant : ${montantRestant} Fcfa</h3>
+    </div>
+`
   }
